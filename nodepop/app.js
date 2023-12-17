@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * Website routes
  */
-app.use('/', require('./routes/index'));
+app.use('/', require('./routes/anuncios'));
 app.use('/anuncios', require('./routes/anuncios'));
 
 /**
