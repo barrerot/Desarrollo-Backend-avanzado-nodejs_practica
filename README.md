@@ -12,7 +12,13 @@ Api for the iOS/Android apps.
 
 ### Configure
 
-Review lib/connectMongoose.js to set database configuration
+Copy .env.example to to your custom .env.
+
+```sh
+cp .env.example .env
+```
+
+And setup your configuration.
 
 ### Init database
 

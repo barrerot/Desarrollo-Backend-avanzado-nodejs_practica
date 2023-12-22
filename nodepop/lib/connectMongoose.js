@@ -11,7 +11,7 @@ mongoose.connection.once('open', function () {
   console.info('Connected to mongodb.');
 });
 
-const connectionPromise = mongoose.connect('mongodb://127.0.0.1/nodepop', {
+const connectionPromise = mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true
 });
 

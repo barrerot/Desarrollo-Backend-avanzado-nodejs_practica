@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 
 const { askUser } = require('./lib/utils');
 const { mongoose, connectMongoose, Anuncio } = require('./models');
