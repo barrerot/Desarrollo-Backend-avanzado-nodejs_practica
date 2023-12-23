@@ -2,7 +2,11 @@
 
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="container">
-    <div class="navbar-header"><a href="/" class="navbar-brand">Nodeapi</a></div>
+    <div class="navbar-header"><a href="/" class="navbar-brand">Nodeapi</a>
+      <% getLocales().forEach(locale => { %>
+        <a href="/change-locale/<%= locale %>"><%= locale %></a>&nbsp;
+      <% }) %>
+    </div>
   </div>
 </div>
 
@@ -39,7 +43,7 @@
         </tbody>
       </table>
 
-      <p>Ejemplos:</p>
+      <p><%=__('Ejemplos:')%></p>
 
       <ul>
         <li><a href="?"><%=__('Todos (max. 1000)')%></a></li>

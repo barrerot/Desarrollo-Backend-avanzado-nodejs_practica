@@ -7,6 +7,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const i18n = require('./lib/i18nConfigure');
+const LangController = require('./controllers/LangController');
 
 const { isAPI } = require('./lib/utils');
 require('./models'); // Connect DB & register models
@@ -35,9 +36,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * Website routes
  */
+const langController = new LangController();
 app.use(i18n.init);
 app.use('/', require('./routes/anuncios'));
 app.use('/anuncios', require('./routes/anuncios'));
+app.get('/change-locale/:locale', langController.changeLocale);
 
 /**
  * API v1 routes
