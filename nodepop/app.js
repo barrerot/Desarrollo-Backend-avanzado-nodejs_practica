@@ -6,6 +6,7 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const i18n = require('./lib/i18nConfigure');
 
 const { isAPI } = require('./lib/utils');
 require('./models'); // Connect DB & register models
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * Website routes
  */
+app.use(i18n.init);
 app.use('/', require('./routes/anuncios'));
 app.use('/anuncios', require('./routes/anuncios'));
 
