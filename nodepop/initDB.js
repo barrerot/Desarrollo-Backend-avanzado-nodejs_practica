@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const { askUser } = require('./lib/utils');
 const { mongoose, connectMongoose, Anuncio } = require('./models');
+const Usuario=require('./models/Usuario');
 
 const ANUNCIOS_JSON = './anuncios.json';
 
@@ -22,6 +23,7 @@ async function main() {
   }
 
   // Inicializar nuestros modelos
+  await initUsuarios();
   const anunciosResult = await initAnuncios(ANUNCIOS_JSON);
   console.log(`\nAnuncios: Deleted ${anunciosResult.deletedCount}, loaded ${anunciosResult.loadedCount} from ${ANUNCIOS_JSON}`);
 
@@ -34,4 +36,18 @@ async function initAnuncios(fichero) {
   const { deletedCount } = await Anuncio.deleteMany();
   const loadedCount = await Anuncio.cargaJson(fichero);
   return { deletedCount, loadedCount };
+}
+async function initUsuarios() {
+  // eliminar
+  const deleted = await Usuario.deleteMany();
+  console.log(`Eliminados ${deleted.deletedCount} usuarios.`);
+
+  // crear
+  const inserted = await Usuario.insertMany([
+    { email: 'admin@example.com', password: '1234'},
+    //{ email: 'admin@example.com', password: await Usuario.hashPassword('1234')},
+    { email: 'usuario1@example.com', password: '1234'},
+    //{ email: 'admin@example.com', password: await Usuario.hashPassword('1234')},
+  ]);
+  console.log(`Creados ${inserted.length} usuarios.`)
 }
