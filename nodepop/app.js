@@ -8,6 +8,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const i18n = require('./lib/i18nConfigure');
 const LangController = require('./controllers/LangController');
+const LoginController = require('./controllers/LoginController');
+
+
 
 const { isAPI } = require('./lib/utils');
 require('./models'); // Connect DB & register models
@@ -46,6 +49,8 @@ app.get('/change-locale/:locale', langController.changeLocale);
  * API v1 routes
  */
 app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
+ 
+app.post('/api/login',LoginController.postJ<wt);
 
 /**
  * Error handlers
