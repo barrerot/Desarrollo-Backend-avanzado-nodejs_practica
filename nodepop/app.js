@@ -40,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Website routes
  */
 const langController = new LangController();
+const loginController = new LoginController();
 app.use(i18n.init);
 app.use('/', require('./routes/anuncios'));
 app.use('/anuncios', require('./routes/anuncios'));
@@ -50,7 +51,7 @@ app.get('/change-locale/:locale', langController.changeLocale);
  */
 app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
  
-app.post('/api/login',LoginController.postJ<wt);
+app.post('/api/login', loginController.postJWT);
 
 /**
  * Error handlers

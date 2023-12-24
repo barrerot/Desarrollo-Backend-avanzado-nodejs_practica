@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const Anuncio = require('../models/Anuncio');
+const Usuario = require('../models/Usuario');
 
 class LoginController {
 

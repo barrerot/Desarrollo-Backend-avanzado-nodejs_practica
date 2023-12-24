@@ -17,24 +17,8 @@ usuarioSchema.methods.comparePassword = function(passwordEnClaro) {
   return bcrypt.compare(passwordEnClaro, this.password)
 }
 
-// método para enviar emails al usuario
-usuarioSchema.methods.sendEmail = async function(asunto, cuerpo) {
-  // crear un transport
-  const transport = await emailTransportConfigure();
 
-  // enviar email
-  const result = await transport.sendMail({
-    from: process.env.EMAIL_SERVICE_FROM,
-    to: this.email,
-    subject: asunto,
-    // text: --> para emails con texto plano
-    html: cuerpo
-  });
-  console.log(`URL de previsualización: ${nodemailer.getTestMessageUrl(result)}`);
-  return result;
-}
 
-// método para pedir a otro servicio que envie un email (RabbitMQ)
 
 
 // creamos el modelo
