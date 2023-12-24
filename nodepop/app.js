@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const i18n = require('./lib/i18nConfigure');
 const LangController = require('./controllers/LangController');
 const LoginController = require('./controllers/LoginController');
+const jwtAuthMiddleware = require('./lib/jwtAuthMiddleware');
 
 
 
@@ -49,7 +50,7 @@ app.get('/change-locale/:locale', langController.changeLocale);
 /**
  * API v1 routes
  */
-app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
+app.use('/apiv1/anuncios', jwtAuthMiddleware, require('./routes/apiv1/anuncios'));
  
 app.post('/api/login', loginController.postJWT);
 
