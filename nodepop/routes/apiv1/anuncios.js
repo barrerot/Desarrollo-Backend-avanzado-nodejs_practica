@@ -8,6 +8,7 @@ const { body, validationResult } = require('express-validator');
 
 const Anuncio = mongoose.model('Anuncio');
 const { buildAnuncioFilterFromReq } = require('../../lib/utils');
+const upload = require('../../lib/uploadConfigure');
 
 // Return the list of anuncio
 router.get('/', (req, res, next) => {
@@ -33,11 +34,7 @@ router.get('/tags', asyncHandler(async function (req, res) {
 }));
 
 // Create
-router.post('/', [ // validaciones:
-  body('nombre' ).isAlphanumeric().withMessage('nombre must be string'),
-  body('venta'  ).isBoolean()     .withMessage('must be boolean'),
-  body('precio' ).isNumeric()     .withMessage('must be numeric'),
-], asyncHandler(async (req, res) => {
+router.post('/', upload.single('foto'),  asyncHandler(async (req, res) => {
 
   validationResult(req).throw();
   const anuncioData = req.body;
