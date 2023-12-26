@@ -40,6 +40,7 @@ router.post('/', upload.single('foto'),  asyncHandler(async (req, res) => {
   const anuncioData = req.body;
 
   const anuncio = new Anuncio(anuncioData);
+  anuncio.foto=req.file.filename;
   const anuncioGuardado = await anuncio.save();
 
   res.json({ result: anuncioGuardado });
