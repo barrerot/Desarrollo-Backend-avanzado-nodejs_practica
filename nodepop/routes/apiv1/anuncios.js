@@ -9,6 +9,8 @@ const { body, validationResult } = require('express-validator');
 const Anuncio = mongoose.model('Anuncio');
 const { buildAnuncioFilterFromReq } = require('../../lib/utils');
 const upload = require('../../lib/uploadConfigure');
+const cote = require('cote');
+const requester = new cote.Requester({ name: 'Image resize requester'})
 
 // Return the list of anuncio
 router.get('/', (req, res, next) => {
@@ -42,6 +44,15 @@ router.post('/', upload.single('foto'),  asyncHandler(async (req, res) => {
   const anuncio = new Anuncio(anuncioData);
   anuncio.foto=req.file.filename;
   const anuncioGuardado = await anuncio.save();
+  //llamar al microservicio
+  requester.send({
+    type: 'resize',
+    filename: req.file.filename,
+    destination: req.file.destination
+}, resized => {
+    datosAnuncio.thumbnail = resized;
+    
+})
 
   res.json({ result: anuncioGuardado });
 
