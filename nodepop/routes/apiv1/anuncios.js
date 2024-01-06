@@ -50,7 +50,7 @@ router.post('/', upload.single('foto'),  asyncHandler(async (req, res) => {
     filename: req.file.filename,
     destination: req.file.destination
 }, resized => {
-    datosAnuncio.thumbnail = resized;
+    anuncioGuardado.thumbnail = resized;
     
 })
 
