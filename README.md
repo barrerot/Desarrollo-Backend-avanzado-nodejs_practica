@@ -109,3 +109,33 @@ Return the list of available tags for the resource anuncios.
         "mobile"
       ]
     }
+
+## Actualización de la API
+Las mejoras incluidas son las siguientes:
+
+#### Seguridad de la API
+Se ha securizado toda la API requiriendo un token de usuario para todas sus consultas. El token se puede obtener haciendo login a:
+
+```
+POST: http://localhost:3000/api/login
+```
+
+Con un nombre de usuario y una contraseña valida en el body. Sehan dado de alta los acordados en clase y enunciado de la práctica
+
+#### Internacionalización de la vista
+
+La vista de anuncios se ha internacionalizado con el módulo `i18n`. lapágina de anuncios
+#### Micro servicio de minificación de imagenes
+
+La ruta de subida de anuncios a la api:
+
+```
+POST:http://localhost:3000/apiv1/anuncios
+```
+
+Permite enviar un fichero de imagen en el campo foto. Si la api recibe esta imagen la guarda en el directorio de imagenes, guarda la ruta en la DB i hace lo mismo con su correspondiente thumbnail a traves de un microservicio creado en cote.
+
+para que funcione hay que arrancar el microservicio con:
+```
+npm run imageResize
+```
