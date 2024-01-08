@@ -1,3 +1,4 @@
+URLde la librería publicada https://www.npmjs.com/package/efemerides
 # NodePop
 
 [Demo](/anuncios) of the methods (this link works only if you run the project)
@@ -133,7 +134,8 @@ La ruta de subida de anuncios a la api:
 POST:http://localhost:3000/apiv1/anuncios
 ```
 
-Permite enviar un fichero de imagen en el campo foto. Si la api recibe esta imagen la guarda en el directorio de imagenes, guarda la ruta en la DB i hace lo mismo con su correspondiente thumbnail a traves de un microservicio creado en cote.
+Permite enviar un fichero de imagen en el campo foto. Si la api recibe esta imagen la guarda en el directorio de imagenes(public/anuncios), guarda la ruta en la DB i hace lo mismo con su correspondiente thumbnail a traves de un microservicio creado en cote.
+El nombre  del thumbnail es el guardado en el anuncio con el prefijo"thumb-"
 
 para que funcione hay que arrancar el microservicio con:
 ```
